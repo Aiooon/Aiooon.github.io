@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>模块导入导出总结 | Noah 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="很多人都使用过export、export default、import，然而它们到底有什么区别呢？ ES6标准发布后，module成为标准，标准的使用是以export指令导出接口，以import引入模块，但是在我们一贯的node模块中，我们采用的是CommonJS规范，使用require引入模块，使用module.exports导出接口。 require时代的模块node 编程中最重要的思想之一就">
+  <meta name="description" content="很多人都使用过export、export default、import，然而它们到底有什么区别呢？ ES6标准发布后，module成为标准，标准的使用是以export指令导出接口，以import引入模块，但是在我们一贯的node模块中，我们采用的是CommonJS规范，使用require引入模块，使用module.exports导出接口。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模块导入导出总结">
 <meta property="og:url" content="http://example.com/2021/06/27/%E6%A8%A1%E5%9D%97%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/index.html">
 <meta property="og:site_name" content="Noah 的博客">
-<meta property="og:description" content="很多人都使用过export、export default、import，然而它们到底有什么区别呢？ ES6标准发布后，module成为标准，标准的使用是以export指令导出接口，以import引入模块，但是在我们一贯的node模块中，我们采用的是CommonJS规范，使用require引入模块，使用module.exports导出接口。 require时代的模块node 编程中最重要的思想之一就">
+<meta property="og:description" content="很多人都使用过export、export default、import，然而它们到底有什么区别呢？ ES6标准发布后，module成为标准，标准的使用是以export指令导出接口，以import引入模块，但是在我们一贯的node模块中，我们采用的是CommonJS规范，使用require引入模块，使用module.exports导出接口。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-27T14:13:37.399Z">
+<meta property="article:modified_time" content="2021-06-27T14:18:45.334Z">
 <meta property="article:author" content="Zhao Yao">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="前端">
@@ -191,6 +191,8 @@
       
         <p>很多人都使用过<code>export、export default、import</code>，然而它们到底有什么区别呢？</p>
 <p>ES6标准发布后，<code>module</code>成为标准，标准的使用是以<code>export</code>指令导出接口，以<code>import</code>引入模块，但是在我们一贯的<code>node</code>模块中，我们采用的是CommonJS规范，使用<code>require</code>引入模块，使用<code>module.exports</code>导出接口。</p>
+<span id="more"></span>
+
 <h2 id="require时代的模块"><a href="#require时代的模块" class="headerlink" title="require时代的模块"></a>require时代的模块</h2><p>node 编程中最重要的思想之一就是<strong>模块</strong>，而正是这个思想，让JavaScript的大规模工程成为可能。模块化编程在js界流行，也是基于此，随后在浏览器端，requirejs 和 seajs 之类的工具包也出现了，可以说在对应规范下，<code>require</code> 统治了 ES6 之前的所有模块化编程，即使现在，在 ES6 module 被完全实现之前，还是这样。</p>
 <p>node 的 module 遵循 CommonJS 规范，requirejs 遵循 AMD，seajs 遵循 CMD，虽各有不同，但总之还是希望保持较为统一的代码风格。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// -------- node -----------</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  a : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">  b : <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------- AMD or CMD ----------------</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">require</span>, <span class="built_in">exports</span>, <span class="built_in">module</span></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    a : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    b : <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
