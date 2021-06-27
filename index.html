@@ -164,6 +164,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-事件循环：微任务和宏任务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/27/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1/">事件循环：微任务和宏任务</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/27/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1/" class="archive-article-date">
+  	<time datetime="2021-06-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p><strong>事件循环</strong> 的概念非常简单。它是一个在 <code>JavaScript</code> 引擎<strong>等待任务</strong>，<strong>执行任务</strong>和<strong>进入休眠状态</strong>等待更多任务这几个状态之间转换的无限循环。</p>
+<p>引擎的一般算法：</p>
+<ol>
+<li>当有任务时：<ul>
+<li>从最先进入的任务开始执行。</li>
+</ul>
+</li>
+<li>休眠直到出现任务，然后转到第 1 步。</li>
+</ol>
+<p>当我们浏览一个网页时就是上述这种形式。<code>JavaScript</code> 引擎大多数时候不执行任何操作，它仅在<strong>脚本/处理程序/事件激活</strong>时执行。</p>
+<p>任务示例：</p>
+<ul>
+<li>当外部脚本 <code>&lt;script src=&quot;...&quot;&gt;</code> 加载完成时，任务就是执行它。</li>
+<li>当用户移动鼠标时，任务就是派生出 <code>mousemove</code> 事件和执行处理程序。</li>
+<li>当安排的（scheduled）<code>setTimeout</code> 时间到达时，任务就是执行其回调。</li>
+<li>……诸如此类。</li>
+</ul>
+<p>设置任务 —&gt; 引擎处理它们 —&gt; 然后等待更多任务（即休眠，几乎不消耗 CPU 资源）。<br>一个任务到来时，引擎可能正处于繁忙状态，那么这个任务就会被排入队列。<br>多个任务组成了一个队列，即所谓的<strong>宏任务队列</strong>（v8 术语）：</p>
+        
+          <a class="article-more-a" href="/2021/06/27/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/27/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-img标签" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -251,89 +352,6 @@
 
 
   
-    <article id="post-异或运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/">异或运算 XOR</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/" class="archive-article-date">
-  	<time datetime="2021-05-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、含义"><a href="#一、含义" class="headerlink" title="一、含义"></a>一、含义</h3><p><strong>XOR</strong> 是 exclusive OR 的缩写。英语的 exclusive 意思是”专有的，独有的”，可以理解为 <strong>XOR</strong> 是更单纯的 OR 运算。</p>
-<p>我们知道，OR 运算的运算子有两种情况，计算结果为 <code>true</code>。</p>
-<p>（1）一个为 <code>true</code>，另一个为 <code>false</code>;</p>
-<p>（2）两个都为 <code>true</code>。</p>
-<p>上面两种情况，有时候需要明确区分，所以引入了 <strong>XOR</strong>。</p>
-<p><strong>XOR</strong> 排除了第二种情况，只有第一种情况（一个运算子为<code>true</code>，另一个为<code>false</code>）才会返回 <code>true</code>，所以可以看成是更单纯的 OR 运算。也就是说， <strong>XOR</strong> 主要用来<strong>判断两个值是否不同</strong>。</p>
-<p><strong>XOR</strong> 一般使用插入符号（caret）<code>^</code>表示。如果约定 0 为 <code>false</code>，1 为 <code>true</code>，那么 <strong>XOR</strong> 的运算真值表如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 ^ 0 &#x3D; 0</span><br><span class="line">0 ^ 1 &#x3D; 1</span><br><span class="line">1 ^ 0 &#x3D; 1</span><br><span class="line">1 ^ 1 &#x3D; 0</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-详解交叉熵" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -390,6 +408,89 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/05/11/%E8%AF%A6%E8%A7%A3%E4%BA%A4%E5%8F%89%E7%86%B5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-异或运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/">异或运算 XOR</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/" class="archive-article-date">
+  	<time datetime="2021-05-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、含义"><a href="#一、含义" class="headerlink" title="一、含义"></a>一、含义</h3><p><strong>XOR</strong> 是 exclusive OR 的缩写。英语的 exclusive 意思是”专有的，独有的”，可以理解为 <strong>XOR</strong> 是更单纯的 OR 运算。</p>
+<p>我们知道，OR 运算的运算子有两种情况，计算结果为 <code>true</code>。</p>
+<p>（1）一个为 <code>true</code>，另一个为 <code>false</code>;</p>
+<p>（2）两个都为 <code>true</code>。</p>
+<p>上面两种情况，有时候需要明确区分，所以引入了 <strong>XOR</strong>。</p>
+<p><strong>XOR</strong> 排除了第二种情况，只有第一种情况（一个运算子为<code>true</code>，另一个为<code>false</code>）才会返回 <code>true</code>，所以可以看成是更单纯的 OR 运算。也就是说， <strong>XOR</strong> 主要用来<strong>判断两个值是否不同</strong>。</p>
+<p><strong>XOR</strong> 一般使用插入符号（caret）<code>^</code>表示。如果约定 0 为 <code>false</code>，1 为 <code>true</code>，那么 <strong>XOR</strong> 的运算真值表如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 ^ 0 &#x3D; 0</span><br><span class="line">0 ^ 1 &#x3D; 1</span><br><span class="line">1 ^ 0 &#x3D; 1</span><br><span class="line">1 ^ 1 &#x3D; 0</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/">展开全文 >></a>
         </p>
       
 
@@ -946,91 +1047,6 @@
 
 
   
-    <article id="post-JavaScript 中的 &#39;...&#39; 运算符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/23/JavaScript%20%E4%B8%AD%E7%9A%84%20'...'%20%E8%BF%90%E7%AE%97%E7%AC%A6/">JavaScript 中的 &#39;...&#39; 运算符</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/23/JavaScript%20%E4%B8%AD%E7%9A%84%20'...'%20%E8%BF%90%E7%AE%97%E7%AC%A6/" class="archive-article-date">
-  	<time datetime="2021-03-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>三个点（…）真名叫扩展运算符，是在ES6中新增加的内容，它可以在函数调用/数组构造时，将数组表达式或者string在语法层面展开；还可以在构造字面量对象时将对象表达式按照key-value的方式展开</p>
-<blockquote>
-<p>字面量一般指[1,2,3]或者{name:’foo’}这种简洁的构造方式,多层嵌套的数组和对象三个点就无能为力了</p>
-</blockquote>
-<p>说白了就是把衣服脱了，不管是大括号（[]）、花括号（{}），统统不在话下，<strong>全部脱掉脱掉！</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">var</span> number = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="built_in">console</span>.log(...number) <span class="comment">//1 2 3 4 5 6</span></span><br><span class="line"><span class="comment">//对象</span></span><br><span class="line"><span class="keyword">var</span> man = &#123;<span class="attr">name</span>:<span class="string">&#x27;chuichui&#x27;</span>,<span class="attr">height</span>:<span class="number">176</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(&#123;...man&#125;) <span class="comment">// &#123;name:&#x27;chuichui&#x27;,height:176&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意，当数组中存在嵌套时，只能展开最外层</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>, [<span class="number">5</span>]], [<span class="number">6</span>, <span class="number">7</span>], <span class="number">8</span>];</span><br><span class="line"><span class="built_in">console</span>.log(...arr);  <span class="comment">// 1 2 [ 3, 4, [ 5 ] ] [ 6, 7 ] 8</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/03/23/JavaScript%20%E4%B8%AD%E7%9A%84%20'...'%20%E8%BF%90%E7%AE%97%E7%AC%A6/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/23/JavaScript%20%E4%B8%AD%E7%9A%84%20'...'%20%E8%BF%90%E7%AE%97%E7%AC%A6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1137,6 +1153,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -1149,19 +1169,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Hello</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color1">Hello</a>
               </li>
              
               <li class="article-tag-list-item">

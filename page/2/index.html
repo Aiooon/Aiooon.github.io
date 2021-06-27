@@ -164,6 +164,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JavaScript 中的 &#39;...&#39; 运算符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/23/JavaScript%20%E4%B8%AD%E7%9A%84%20'...'%20%E8%BF%90%E7%AE%97%E7%AC%A6/">JavaScript 中的 &#39;...&#39; 运算符</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/23/JavaScript%20%E4%B8%AD%E7%9A%84%20'...'%20%E8%BF%90%E7%AE%97%E7%AC%A6/" class="archive-article-date">
+  	<time datetime="2021-03-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>三个点（…）真名叫扩展运算符，是在ES6中新增加的内容，它可以在函数调用/数组构造时，将数组表达式或者string在语法层面展开；还可以在构造字面量对象时将对象表达式按照key-value的方式展开</p>
+<blockquote>
+<p>字面量一般指[1,2,3]或者{name:’foo’}这种简洁的构造方式,多层嵌套的数组和对象三个点就无能为力了</p>
+</blockquote>
+<p>说白了就是把衣服脱了，不管是大括号（[]）、花括号（{}），统统不在话下，<strong>全部脱掉脱掉！</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">var</span> number = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="built_in">console</span>.log(...number) <span class="comment">//1 2 3 4 5 6</span></span><br><span class="line"><span class="comment">//对象</span></span><br><span class="line"><span class="keyword">var</span> man = &#123;<span class="attr">name</span>:<span class="string">&#x27;chuichui&#x27;</span>,<span class="attr">height</span>:<span class="number">176</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(&#123;...man&#125;) <span class="comment">// &#123;name:&#x27;chuichui&#x27;,height:176&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意，当数组中存在嵌套时，只能展开最外层</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>, [<span class="number">5</span>]], [<span class="number">6</span>, <span class="number">7</span>], <span class="number">8</span>];</span><br><span class="line"><span class="built_in">console</span>.log(...arr);  <span class="comment">// 1 2 [ 3, 4, [ 5 ] ] [ 6, 7 ] 8</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/03/23/JavaScript%20%E4%B8%AD%E7%9A%84%20'...'%20%E8%BF%90%E7%AE%97%E7%AC%A6/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/23/JavaScript%20%E4%B8%AD%E7%9A%84%20'...'%20%E8%BF%90%E7%AE%97%E7%AC%A6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HTTP状态码及其含义" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -587,6 +672,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -599,19 +688,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Hello</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color1">Hello</a>
               </li>
              
               <li class="article-tag-list-item">
