@@ -265,6 +265,114 @@
 
 
   
+    <article id="post-Vue_tips_render" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/04/Vue_tips_render/">Vue中的 `render: h =&gt; h(App) $mount` 什么意思</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/04/Vue_tips_render/" class="archive-article-date">
+  	<time datetime="2021-06-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初始一个vue.js项目时，常常发现main.js里有如下代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>这什么意思？那我自己做项目怎么改？<br>其实render: h =&gt; h(App)是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> createElement(App);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>进一步缩写为(ES6 语法)：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render (createElement) &#123;</span><br><span class="line">    <span class="keyword">return</span> createElement(App);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render (h)&#123;</span><br><span class="line">    <span class="keyword">return</span> h(App);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ES6<a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/function#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0">箭头函数</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="params">h</span> =&gt;</span> h(App);</span><br></pre></td></tr></table></figure>
+<p>其中 根据 Vue.js 作者 Even You 的回复，h 的含义如下：</p>
+<blockquote>
+<p>It comes from the term “hyperscript”, which is commonly used in many virtual-dom implementations. “Hyperscript” itself stands for “script that generates HTML structures” because HTML is the acronym for “hyper-text markup language”.<br>它来自术语”hyperscript”，其通常用在 virtual-dom 的实现中。Hyperscript 本身是指生成HTML 结构的 script 脚本，因为 HTML 是 hyper-text markup language 的缩写（超文本标记语言）</p>
+</blockquote>
+<p>在这里推荐大家看官方文档:</p>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#vm-mount">渲染函数RenderFunction&amp;JSX的API之Mount方法</a></p>
+<blockquote>
+<p>将 h 作为 createElement 的别名是 Vue 生态系统中的一个通用惯例，实际上也是 JSX 所要求的，如果在作用域中 h 失去作用，在应用中会触发报错。</p>
+</blockquote>
+<p>虚拟DOM / VNode</p>
+<blockquote>
+<p>createElement 到底会返回什么呢？其实不是一个实际的 DOM 元素。createElement更准确的名字可能是 createNodeDescription，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的节点，及其子节点。我们把这样的节点描述为“虚拟节点 (Virtual Node)”，也常简写它为“VNode”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。</p>
+</blockquote>
+<p>总体来说，Vue 在调用 render 方法时，会传入一个 createElement 函数作为参数，也就是这里的 h 的实参是 createElement 函数，这个函数的作用就是生成一个 VNode节点，render 函数得到这个 VNode 节点之后，调用了 mount 方法，渲染成真实 DOM 节点，并挂载到（通常是div app）??节点上。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Vue.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/04/Vue_tips_render/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-img标签" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -352,6 +460,89 @@
 
 
   
+    <article id="post-异或运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/">异或运算 XOR</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/" class="archive-article-date">
+  	<time datetime="2021-05-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、含义"><a href="#一、含义" class="headerlink" title="一、含义"></a>一、含义</h3><p><strong>XOR</strong> 是 exclusive OR 的缩写。英语的 exclusive 意思是”专有的，独有的”，可以理解为 <strong>XOR</strong> 是更单纯的 OR 运算。</p>
+<p>我们知道，OR 运算的运算子有两种情况，计算结果为 <code>true</code>。</p>
+<p>（1）一个为 <code>true</code>，另一个为 <code>false</code>;</p>
+<p>（2）两个都为 <code>true</code>。</p>
+<p>上面两种情况，有时候需要明确区分，所以引入了 <strong>XOR</strong>。</p>
+<p><strong>XOR</strong> 排除了第二种情况，只有第一种情况（一个运算子为<code>true</code>，另一个为<code>false</code>）才会返回 <code>true</code>，所以可以看成是更单纯的 OR 运算。也就是说， <strong>XOR</strong> 主要用来<strong>判断两个值是否不同</strong>。</p>
+<p><strong>XOR</strong> 一般使用插入符号（caret）<code>^</code>表示。如果约定 0 为 <code>false</code>，1 为 <code>true</code>，那么 <strong>XOR</strong> 的运算真值表如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 ^ 0 &#x3D; 0</span><br><span class="line">0 ^ 1 &#x3D; 1</span><br><span class="line">1 ^ 0 &#x3D; 1</span><br><span class="line">1 ^ 1 &#x3D; 0</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-详解交叉熵" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -408,89 +599,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/05/11/%E8%AF%A6%E8%A7%A3%E4%BA%A4%E5%8F%89%E7%86%B5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-异或运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/">异或运算 XOR</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/" class="archive-article-date">
-  	<time datetime="2021-05-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、含义"><a href="#一、含义" class="headerlink" title="一、含义"></a>一、含义</h3><p><strong>XOR</strong> 是 exclusive OR 的缩写。英语的 exclusive 意思是”专有的，独有的”，可以理解为 <strong>XOR</strong> 是更单纯的 OR 运算。</p>
-<p>我们知道，OR 运算的运算子有两种情况，计算结果为 <code>true</code>。</p>
-<p>（1）一个为 <code>true</code>，另一个为 <code>false</code>;</p>
-<p>（2）两个都为 <code>true</code>。</p>
-<p>上面两种情况，有时候需要明确区分，所以引入了 <strong>XOR</strong>。</p>
-<p><strong>XOR</strong> 排除了第二种情况，只有第一种情况（一个运算子为<code>true</code>，另一个为<code>false</code>）才会返回 <code>true</code>，所以可以看成是更单纯的 OR 运算。也就是说， <strong>XOR</strong> 主要用来<strong>判断两个值是否不同</strong>。</p>
-<p><strong>XOR</strong> 一般使用插入符号（caret）<code>^</code>表示。如果约定 0 为 <code>false</code>，1 为 <code>true</code>，那么 <strong>XOR</strong> 的运算真值表如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 ^ 0 &#x3D; 0</span><br><span class="line">0 ^ 1 &#x3D; 1</span><br><span class="line">1 ^ 0 &#x3D; 1</span><br><span class="line">1 ^ 1 &#x3D; 0</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/11/%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97/">展开全文 >></a>
         </p>
       
 
@@ -961,92 +1069,6 @@
 
 
   
-    <article id="post-JavaScript 中闭包的强大威力" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/JavaScript%20%E4%B8%AD%E9%97%AD%E5%8C%85%E7%9A%84%E5%BC%BA%E5%A4%A7%E5%A8%81%E5%8A%9B/">JavaScript 中闭包的强大威力</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/JavaScript%20%E4%B8%AD%E9%97%AD%E5%8C%85%E7%9A%84%E5%BC%BA%E5%A4%A7%E5%A8%81%E5%8A%9B/" class="archive-article-date">
-  	<time datetime="2021-03-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>闭包是一个可以访问外部作用域的内部函数，即使这个外部作用域已经执行结束。</p>
-<hr>
-<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>作用域决定这个变量的生命周期及其可见性。 当我们创建了一个函数或者 <code>&#123;&#125;</code> 块，就会生成一个新的作用域。需要注意的是，通过 <code>var</code> 创建的变量只有函数作用域，而通过 <code>let</code> 和 <code>const</code> 创建的变量既有函数作用域，也有块作用域。</p>
-        
-          <a class="article-more-a" href="/2021/03/24/JavaScript%20%E4%B8%AD%E9%97%AD%E5%8C%85%E7%9A%84%E5%BC%BA%E5%A4%A7%E5%A8%81%E5%8A%9B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/JavaScript%20%E4%B8%AD%E9%97%AD%E5%8C%85%E7%9A%84%E5%BC%BA%E5%A4%A7%E5%A8%81%E5%8A%9B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1153,10 +1175,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -1169,15 +1187,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hello</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
