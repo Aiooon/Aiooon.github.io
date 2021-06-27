@@ -356,6 +356,148 @@
 
 
   
+    <article id="post-模块导入导出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/27/%E6%A8%A1%E5%9D%97%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/">模块导入导出总结</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/27/%E6%A8%A1%E5%9D%97%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/" class="archive-article-date">
+  	<time datetime="2021-06-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>很多人都使用过<code>export、export default、import</code>，然而它们到底有什么区别呢？</p>
+<p>ES6标准发布后，<code>module</code>成为标准，标准的使用是以<code>export</code>指令导出接口，以<code>import</code>引入模块，但是在我们一贯的<code>node</code>模块中，我们采用的是CommonJS规范，使用<code>require</code>引入模块，使用<code>module.exports</code>导出接口。</p>
+<h2 id="require时代的模块"><a href="#require时代的模块" class="headerlink" title="require时代的模块"></a>require时代的模块</h2><p>node 编程中最重要的思想之一就是<strong>模块</strong>，而正是这个思想，让JavaScript的大规模工程成为可能。模块化编程在js界流行，也是基于此，随后在浏览器端，requirejs 和 seajs 之类的工具包也出现了，可以说在对应规范下，<code>require</code> 统治了 ES6 之前的所有模块化编程，即使现在，在 ES6 module 被完全实现之前，还是这样。</p>
+<p>node 的 module 遵循 CommonJS 规范，requirejs 遵循 AMD，seajs 遵循 CMD，虽各有不同，但总之还是希望保持较为统一的代码风格。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// -------- node -----------</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  a : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">  b : <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------- AMD or CMD ----------------</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">require</span>, <span class="built_in">exports</span>, <span class="built_in">module</span></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    a : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    b : <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，为了保持风格的高度统一，除了在浏览器端的模块中要使用一个 <code>define</code> 函数来提供模块的闭包以外，其他代码可以完全一致。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------ node ---------</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="built_in">require</span>(<span class="string">&#x27;./a&#x27;</span>);</span><br><span class="line">m.a();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------ AMD or CMD -------------</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">require</span>, <span class="built_in">exports</span>, <span class="built_in">module</span></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> m = <span class="built_in">require</span>(<span class="string">&#x27;./a&#x27;</span>);</span><br><span class="line">   m.a();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在使用上，也非常相似。虽然 AMD or CMD 提供了更加丰富的风格，但是我们本文主要是讨论 node 环境下，所以不做扩展。</p>
+<h2 id="ES6中的module"><a href="#ES6中的module" class="headerlink" title="ES6中的module"></a>ES6中的module</h2><p>ES6 发布的 module 并没有直接采用 CommonJS，甚至连 require 都没有采用，也就是说 require 仍然只是 node 的一个私有的全局方法，<code>module.exports</code> 也只是 node 私有的一个全局变量属性，跟标准半毛钱关系都没有。</p>
+<h3 id="export导出模块接口"><a href="#export导出模块接口" class="headerlink" title="export导出模块接口"></a>export导出模块接口</h3><p>在要导出的接口前面，加入export指令。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> b = <span class="string">&#x27;xxx&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;b&#125;; <span class="comment">// 这是ES6的写法，实际上就是&#123;b:b&#125;</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> b = <span class="string">&#x27;ooo&#x27;</span>, <span class="number">1000</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> c = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p>下面是错误的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误演示</span></span><br><span class="line"><span class="keyword">export</span> <span class="number">1</span>; <span class="comment">// 绝对不可以</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">export</span> a;</span><br></pre></td></tr></table></figure>
+<p><code>export</code> 在导出接口的时候，必须与模块内部的变量具有一一对应的关系。直接导出 <code>1</code> 没有任何意义，也不可能在 <code>import</code> 的时候有一个变量与之对应。 <code>export a</code> 虽然看上去成立，但是 <code>a</code> 的值是一个数字，根本无法完成解构，因此必须写成 <code>export &#123;a&#125;</code> 的形式。即使 <code>a</code> 被赋值为一个 <code>function</code>，也是不允许的。</p>
+<p>而且，大部分风格都建议，模块中最好在末尾用一个 <code>export</code> 导出所有的接口，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123;fun <span class="keyword">as</span> <span class="keyword">default</span>,a,b,c&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="JavaScript-ES6中export及export-default的区别"><a href="#JavaScript-ES6中export及export-default的区别" class="headerlink" title="JavaScript ES6中export及export default的区别"></a>JavaScript ES6中export及export default的区别</h3><p>在 JavaScript ES6 中，<code>export</code> 与 <code>export default</code> 均可用于导出<code>常量、函数、文件、模块</code>等，你可以在其它文件或模块中通过 <code>import+(常量 | 函数 | 文件 | 模块)名</code> 的方式，将其导入，以便能够对其进行使用，但在一个文件或模块中，**<code>export、import</code>可以有多个，<code>export default</code>仅有一个**。 </p>
+<p>export:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo1.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> str = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//demo2.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; str, f &#125; <span class="keyword">from</span> <span class="string">&#x27;demo1&#x27;</span> <span class="comment">//也可以分开写两次，导入的时候带花括号</span></span><br></pre></td></tr></table></figure>
+
+<p>export default:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo1.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">const</span> str = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//demo2.js</span></span><br><span class="line"><span class="keyword">import</span> str <span class="keyword">from</span> <span class="string">&#x27;demo1&#x27;</span> <span class="comment">//导入的时候没有花括号</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="import导入模块"><a href="#import导入模块" class="headerlink" title="import导入模块"></a>import导入模块</h3><p><code>import</code> 的语法跟 <code>require</code> 不同，而且 <code>import</code> 必须放在文件的最开始，且前面不允许有其他逻辑代码，这和其他所有编程语言风格一致。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">&#x27;jquery&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> _ <span class="keyword">from</span> <span class="string">&#x27;_&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;a,b,c&#125; <span class="keyword">from</span> <span class="string">&#x27;./a&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="keyword">default</span> <span class="keyword">as</span> alias, a <span class="keyword">as</span> a_a, b, c&#125; <span class="keyword">from</span> <span class="string">&#x27;./a&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><code>import</code> 后面跟上花括号的形式是最基本的用法，花括号里面的变量与 <code>export</code> 后面的变量一一对应。这里，你必须了解对象的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">解构赋值</a>的知识，了解了解构赋值，这里的“一一对应”的关系就能具体理解了。</p>
+<h3 id="as关键字"><a href="#as关键字" class="headerlink" title="as关键字"></a>as关键字</h3><p>简单的说 <code>as</code> 关键字的作用就是取一个别名。<code>export</code> 中可以用，<code>import</code>中其实也可以用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">export</span> &#123;a <span class="keyword">as</span> fun&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;fun <span class="keyword">as</span> a&#125; <span class="keyword">from</span> <span class="string">&#x27;./a&#x27;</span>;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码，<code>export</code> 的时候，对外提供的接口是 <code>fun</code>，它是 <code>a.js</code> 内部 <code>a</code> 这个函数的别名，但是在模块外面，认不到 <code>a</code>，只能认到 <code>fun</code>。</p>
+<p><code>import</code> 中的 <code>as</code> 就很简单，就是你在使用模块里面的方法的时候，给这个方法取一个别名，好在当前的文件里面使用。之所以是这样，是因为有的时候不同的两个模块可能通过相同的接口，比如有一个<code>c.js</code> 也通过了 <code>fun</code> 这个接口：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果在 <code>b.js</code> 中同时使用 <code>a</code> 和 <code>c</code> 这两个模块，就必须想办法解决接口重名的问题，<code>as</code>就解决了。</p>
+<h3 id="default关键字"><a href="#default关键字" class="headerlink" title="default关键字"></a>default关键字</h3><p><code>default</code> 其实是别名的语法糖：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// d.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等效于：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">export</span> &#123;a <span class="keyword">as</span> <span class="keyword">default</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>import</code> 的时候，可以这样用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> a <span class="keyword">from</span> <span class="string">&#x27;./d&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等效于，或者说就是下面这种写法的简写，是同一个意思</span></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="keyword">default</span> <span class="keyword">as</span> a&#125; <span class="keyword">from</span> <span class="string">&#x27;./d&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>这个语法糖的好处就是 <code>import</code> 的时候，可以省去花括号 <code>&#123;&#125;</code>。简单的说，如果 <code>import</code> 的时候，你发现某个变量没有花括号括起来（没有*号），那么你在脑海中应该把它还原成有花括号的 <code>as</code> 语法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> $,&#123;each,map&#125; <span class="keyword">from</span> <span class="string">&#x27;jquery&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><code>import</code> 后面第一个 <code>$</code> 是 <code>&#123;defalut as $&#125;</code> 的替代写法。</p>
+<h3 id="符号"><a href="#符号" class="headerlink" title="*符号"></a>*符号</h3><p><code>*</code> 就是代表所有，只用在 <code>import</code> 中，我们看下两个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> _ <span class="keyword">from</span> <span class="string">&#x27;_&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>在意义上和 <code>import _ from &#39;_&#39;;</code> 是不同的，虽然实际上后面的使用方法是一样的。它表示的是把 <code>&#39;_&#39;</code> 模块中的所有接口挂载到 <code>_</code> 这个对象上，所以可以用 <code>_.each</code> 调用某个接口。</p>
+<p>另外还可以通过 <code>*</code> 号直接继承某一个模块的接口：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">&#x27;_&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等效于：</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> all <span class="keyword">from</span> <span class="string">&#x27;_&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> all;</span><br></pre></td></tr></table></figure>
+<p><code>*</code> 符号尽可能少用，它实际上是使用所有 <code>export</code> 的接口，但是很有可能你的当前模块并不会用到所有接口，可能仅仅是一个，所以最好的建议是使用花括号，用一个加一个。</p>
+<h2 id="该用require还是import？"><a href="#该用require还是import？" class="headerlink" title="该用require还是import？"></a>该用require还是import？</h2><p><code>require</code> 的使用非常简单，它相当于 <code>module.exports</code> 的传送门，<code>module.exports</code> 后面的内容是什么，<code>require</code> 的结果就是什么，对象、数字、字符串、函数…… 再把 <code>require</code> 的结果赋值给某个变量，相当于把 <code>require</code> 和 <code>module.exports</code> 进行平行空间的位置重叠。</p>
+<p>而且 <code>require</code> 理论上可以运用在代码的<strong>任何地方</strong>，甚至不需要赋值给某个变量之后再使用，比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;./a&#x27;</span>)(); <span class="comment">// a模块是一个函数，立即执行a模块函数</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">require</span>(<span class="string">&#x27;./a&#x27;</span>).data; <span class="comment">// a模块导出的是一个对象</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">&#x27;./a&#x27;</span>)[<span class="number">0</span>]; <span class="comment">// a模块导出的是一个数组</span></span><br></pre></td></tr></table></figure>
+
+<p>你在使用时，完全可以忽略模块化这个概念来使用 <code>require</code>，仅仅把它当做一个node内置的全局函数，它的参数甚至可以是表达式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(process.cwd() + <span class="string">&#x27;/a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是 <code>import</code> 则不同，它是<strong>编译时</strong>的（<strong>require是运行时的</strong>），它必须放在文件开头，而且使用格式也是确定的，不容置疑。<br>它不会将整个模块运行后赋值给某个变量，而是只选择 <code>import</code> 的接口进行编译，这样在性能上比 <code>require</code> 好很多。</p>
+<p>从理解上，**<code>require</code> 是赋值过程，<code>import</code> 是解构过程**，当然，<code>require</code> 也可以将结果解构赋值给一组变量，但是 <code>import</code> 在遇到 <code>default</code> 时，和 <code>require</code> 则完全不同：<br><code>var $ = require(&#39;jquery&#39;);</code> 和 <code>import $ from &#39;jquery&#39;</code> 是完全不同的两种概念。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/27/%E6%A8%A1%E5%9D%97%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Vue_tips_render" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -990,87 +1132,6 @@
 
 
   
-    <article id="post-px、em、rem、%、vw、vh、vm 这些单位的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/26/px%01em%01rem%01%25%01vw%01vh%01vm%20%D9%9BUM%EF%BF%BD:+/">px、em、rem、%、vw、vh、vm 这些单位的区别</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/26/px%01em%01rem%01%25%01vw%01vh%01vm%20%D9%9BUM%EF%BF%BD:+/" class="archive-article-date">
-  	<time datetime="2021-03-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-px"><a href="#1-px" class="headerlink" title="1.px"></a>1.px</h4><p><code>px</code>就是像素，也是我们现在经常使用的基本单位，比如常常听到的电脑像素是1024x768的，表示的是水平方向是1024个像素点，垂直方向是768个像素点。<br><code>px</code>是<strong>绝对长度</strong>单位，它不会根据屏幕的大小进行调整。</p>
-<h4 id="2-em"><a href="#2-em" class="headerlink" title="2.em"></a>2.em</h4><p><code>em</code>是<strong>相对字体长度</strong>单位，参考物是父元素的<code>font-size</code>，默认字体大小是<code>16px</code>，所以<code>1em</code>不是固定值，他会继承父元素的字体大小。</p>
-        
-          <a class="article-more-a" href="/2021/03/26/px%01em%01rem%01%25%01vw%01vh%01vm%20%D9%9BUM%EF%BF%BD:+/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/26/px%01em%01rem%01%25%01vw%01vh%01vm%20%D9%9BUM%EF%BF%BD:+/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1177,6 +1238,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -1185,15 +1250,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1304,7 +1365,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">好好吃饭&lt;br&gt;好好跑步&lt;br&gt;好好学习&lt;br&gt;好好生活</div>
   	  	
     	</section>
     
