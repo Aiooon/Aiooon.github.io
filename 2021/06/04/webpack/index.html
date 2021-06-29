@@ -6,27 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>二叉树的遍历 | Noah 的博客</title>
+  <title>Webpack学习笔记 | Noah 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 相关题目这里是 4 道相关题目：  144.二叉树的前序遍历  94. 二叉树的中序遍历  145. 二叉树的后序遍历  102. 二叉树的层序遍历 要解决这四道题目，最基本的前提是要了解什么是二叉树，以及二叉树的遍历方式。如果你已经有所了解，则可以直接查看下一节的内容。">
+  <meta name="description" content="课程地址：Webpack从原理到实战完整版 课程重点:  理解前端模块化 理解webpack打包的核心思路 理解webpack中的“关键人物”（loader、plugin）  1. Webpack 是什么Webpack 是一个现代 javascript 应用程序的静态模块打包器  前端发展的产物 模块化打包工具 工程化方案">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉树的遍历">
-<meta property="og:url" content="http://example.com/2021/04/13/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/index.html">
+<meta property="og:title" content="Webpack学习笔记">
+<meta property="og:url" content="http://example.com/2021/06/04/webpack/index.html">
 <meta property="og:site_name" content="Noah 的博客">
-<meta property="og:description" content="1. 相关题目这里是 4 道相关题目：  144.二叉树的前序遍历  94. 二叉树的中序遍历  145. 二叉树的后序遍历  102. 二叉树的层序遍历 要解决这四道题目，最基本的前提是要了解什么是二叉树，以及二叉树的遍历方式。如果你已经有所了解，则可以直接查看下一节的内容。">
+<meta property="og:description" content="课程地址：Webpack从原理到实战完整版 课程重点:  理解前端模块化 理解webpack打包的核心思路 理解webpack中的“关键人物”（loader、plugin）  1. Webpack 是什么Webpack 是一个现代 javascript 应用程序的静态模块打包器  前端发展的产物 模块化打包工具 工程化方案">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Aiooon/blogImg/main/img/20210413112649.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Aiooon/blogImg/main/img/20210413112722.png">
-<meta property="article:published_time" content="2021-04-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-13T04:04:56.897Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Aiooon/blogImg/main/img/20210629135511.png">
+<meta property="article:published_time" content="2021-06-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-29T06:47:39.510Z">
 <meta property="article:author" content="Zhao Yao">
 <meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="前端">
 <meta property="article:tag" content="笔记">
-<meta property="article:tag" content="面试">
-<meta property="article:tag" content="数据结构">
-<meta property="article:tag" content="二叉树">
+<meta property="article:tag" content="Vue.js">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Aiooon/blogImg/main/img/20210413112649.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Aiooon/blogImg/main/img/20210629135511.png">
   
     <link rel="alternative" href="/atom.xml" title="Noah 的博客" type="application/atom+xml">
   
@@ -174,83 +172,205 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-二叉树的遍历" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-webpack" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      二叉树的遍历
+      Webpack学习笔记
     </h1>
   
 
         
-        <a href="/2021/04/13/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" class="archive-article-date">
-  	<time datetime="2021-04-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-13</time>
+        <a href="/2021/06/04/webpack/" class="archive-article-date">
+  	<time datetime="2021-06-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-相关题目"><a href="#1-相关题目" class="headerlink" title="1. 相关题目"></a>1. 相关题目</h4><p>这里是 4 道相关题目：</p>
-<ol>
-<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144.二叉树的前序遍历</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">102. 二叉树的层序遍历</a></p>
-<p>要解决这四道题目，最基本的前提是要了解什么是二叉树，以及二叉树的遍历方式。如果你已经有所了解，则可以直接查看下一节的内容。</p>
-</li>
-</ol>
+        <p>课程地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1a741197Hn?p=1&t=11552">Webpack从原理到实战完整版</a></p>
+<p>课程重点:</p>
+<ul>
+<li>理解前端模块化</li>
+<li>理解webpack打包的核心思路</li>
+<li>理解webpack中的“关键人物”（loader、plugin）</li>
+</ul>
+<h2 id="1-Webpack-是什么"><a href="#1-Webpack-是什么" class="headerlink" title="1. Webpack 是什么"></a>1. Webpack 是什么</h2><p>Webpack 是一个现代 <strong><code>javascript</code></strong> 应用程序的静态模块<strong>打包器</strong></p>
+<ul>
+<li>前端发展的产物</li>
+<li>模块化打包工具</li>
+<li>工程化方案</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Aiooon/blogImg/main/img/20210629135511.png"></p>
 <span id="more"></span>
 
-<h4 id="2-相关概念"><a href="#2-相关概念" class="headerlink" title="2. 相关概念"></a>2. 相关概念</h4><p><strong>二叉树</strong></p>
-<p>首先，二叉树是一种「数据结构」。简单来说，就是一个包含节点，以及它的左右孩子的一种数据结构。</p>
-<img src="https://raw.githubusercontent.com/Aiooon/blogImg/main/img/20210413112649.png" width = "40%" />
-
-
-
-<p><strong>遍历方式</strong></p>
-<p>如果对每一个节点进行编号，你会用什么方式去遍历每个节点呢？</p>
-<img src="https://raw.githubusercontent.com/Aiooon/blogImg/main/img/20210413112722.png" width = "40%" />
-
-<p>如果你按照 根节点 -&gt; 左孩子 -&gt; 右孩子 的方式遍历，即「先序遍历」，每次先遍历根节点，遍历结果为 <code>1 2 4 5 3 6 7</code>；</p>
-<p>同理，如果你按照 左孩子 -&gt; 根节点 -&gt; 右孩子 的方式遍历，即「中序序遍历」，遍历结果为 <code>4 2 5 1 6 3 7</code>；</p>
-<p>如果你按照 左孩子 -&gt; 右孩子 -&gt; 根节点 的方式遍历，即「后序序遍历」，遍历结果为 <code>4 5 2 6 7 3 1</code>；</p>
-<p>最后，层次遍历就是按照每一层从左向右的方式进行遍历，遍历结果为 <code>1 2 3 4 5 6 7</code>。</p>
-<h4 id="3-方法解析"><a href="#3-方法解析" class="headerlink" title="3. 方法解析"></a>3. 方法解析</h4><h5 id="3-1-递归解法"><a href="#3-1-递归解法" class="headerlink" title="3.1 递归解法"></a>3.1 递归解法</h5><p>递归的模板比较固定，一般都要新增一个 <code>dfs</code> 函数：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dfs = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root !== <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    res.push(root.val);		<span class="comment">// 前序遍历</span></span><br><span class="line">    dfs(root.left);</span><br><span class="line">    dfs(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>对于前序、中序和后序遍历，只需将递归函数里的 <code>res.append(root.val)</code> 放在<strong>不同位置</strong>即可，然后调用这个递归函数就可以了，代码完全一样。</p>
-<ol>
-<li><p>前序遍历</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> preOrder = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="keyword">var</span> dfs = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        res.push(root.val);</span><br><span class="line">        dfs(root.left);</span><br><span class="line">        dfs(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(root);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>中序遍历</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inOrder = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="keyword">var</span> dfs = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root.left);</span><br><span class="line">        res.push(root.val);</span><br><span class="line">        dfs(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(root);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>后序遍历</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> postOrder = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="keyword">var</span> dfs = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root.left);</span><br><span class="line">        dfs(root.right);</span><br><span class="line">        res.push(root.val);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(root);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<p>默认只对 js 进行处理，其他类型文件需要配置 <code>loader</code> 或者插件进行处理。<strong>打包</strong>是指将各个依赖文件进行梳理打包，形成一个JS依赖文件。</p>
+<h3 id="为什么要打包？"><a href="#为什么要打包？" class="headerlink" title="为什么要打包？"></a>为什么要打包？</h3><ol>
+<li>各个依赖文件的关系难以梳理，耦合程度较高，代码难以维护。</li>
+<li>把所有依赖包都打包成为一个js文件（bundle.js）文件，会有效降低文件请求次数，一定程度提升性能。</li>
+<li>逻辑多、文件多，项目复杂度提高</li>
 </ol>
-<h5 id="3-2-迭代"><a href="#3-2-迭代" class="headerlink" title="3.2 迭代"></a>3.2 迭代</h5><p>迭代法需要使用辅助队列或栈</p>
+<p>webpack除提供上述功能外，还充当了“<strong>翻译官</strong>”的角色，例如将 ES6 翻译为低版本的语法，将 less、sass 翻译为 css 等功能。且webpack 功能强大而灵活，<code>plugin</code> 可插拔</p>
+<h2 id="2-理解前端模块化"><a href="#2-理解前端模块化" class="headerlink" title="2. 理解前端模块化"></a>2. 理解前端模块化</h2><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>定义：运行时变量、函数、对象可访问性。<br>作用域决定了代码中变量和其他资源的可见性。</p>
+<p>全局作用域：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">window</span>.a; <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">global</span>.a; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">ps: 全局对象，在浏览器中是 <span class="built_in">window</span> ，在 node 中是 <span class="built_in">global</span> </span><br></pre></td></tr></table></figure>
+
+<p>局部作用域：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> v = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.v; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>如果在传统 js 写法中，引入多个 script，就很容易造成全局作用域冲突而导致不可预测的问题：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">scr</span>=<span class="string">&quot;./moduleA.js&quot;</span>&gt;</span><span class="handlebars"><span class="xml"><span class="tag">&lt;/<span class="name">sciprt</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">scr</span>=<span class="string">&quot;./moduleB.js&quot;</span>&gt;</span><span class="handlebars"><span class="xml"><span class="tag">&lt;/<span class="name">sciprt</span>&gt;</span></span></span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">scr</span>=<span class="string">&quot;./moduleC.js&quot;</span>&gt;</span><span class="handlebars"><span class="xml"><span class="tag">&lt;/<span class="name">sciprt</span>&gt;</span></span></span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+
+<p>改进步骤一：使用变量作用域形成局部作用域：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义模块内的局部作用域，以moduleA为例</span></span><br><span class="line"><span class="keyword">var</span> Susan = &#123;</span><br><span class="line">    name: <span class="string">&quot;susan&quot;</span>,</span><br><span class="line">    sex: <span class="string">&quot;female&quot;</span>,</span><br><span class="line">    tell: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(<span class="string">&quot;im susan&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是步骤一无法保证模块属性内部安全性，比如可能不小心改掉属性值，可以通过立即执行函数进行改写，形成闭包。</p>
+<p>改进步骤二：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义模块内的闭包作用域（模块作用域），以 moduleA 为例</span></span><br><span class="line"><span class="keyword">var</span> SusanModule = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Susan = &#123;</span><br><span class="line">        <span class="comment">// 自由变量</span></span><br><span class="line">        name: <span class="string">&quot;susan&quot;</span>,</span><br><span class="line">        <span class="comment">// 自由变量</span></span><br><span class="line">        sex: <span class="string">&quot;female&quot;</span>,</span><br><span class="line">        <span class="comment">// 只允许访问 tell 方法，不能访问和修改其他属性</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">        tell: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;im susan&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对于步骤二还有一种写法，推荐使用这种写法，也是早期模块实现的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义模块内的闭包作用域（模块作用域），以moduleA为例</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">window</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">&quot;susan&quot;</span></span><br><span class="line">    <span class="keyword">var</span> sex = <span class="string">&quot;female&quot;</span></span><br><span class="line">    functioon <span class="function"><span class="title">tell</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;im &quot;</span>, <span class="built_in">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">window</span>.susanModule = &#123;tell&#125;</span><br><span class="line">&#125;)(<span class="built_in">window</span>)<span class="comment">// window作为参数传给</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>调用验证：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.susanModule.tell(); <span class="comment">//im susan</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-模块化的优点"><a href="#3-模块化的优点" class="headerlink" title="3. 模块化的优点"></a>3. 模块化的优点</h2><ul>
+<li>作用域封装</li>
+<li>重用性</li>
+<li>解除耦合</li>
+</ul>
+<p>模块化方案进化史：AMD -&gt; CommonJS -&gt; ES6 Module</p>
 <ol>
-<li><p>前序遍历</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> preOrder = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> cur = root;</span><br><span class="line">    <span class="keyword">let</span> res = [], stack = [];</span><br><span class="line">    <span class="keyword">while</span> (cur !== <span class="literal">null</span> || stack.length != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur != <span class="literal">null</span>) &#123;</span><br><span class="line">            res.push(cur.val);</span><br><span class="line">            stack.push(cur);</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cur = stack.pop();</span><br><span class="line">            cur = cur.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>中序遍历</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inOrder = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> cur = root;</span><br><span class="line">    <span class="keyword">let</span> res = [], stack = [];</span><br><span class="line">    <span class="keyword">while</span> (cur !== <span class="literal">null</span> || stack.length != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur != <span class="literal">null</span>) &#123;</span><br><span class="line">            stack.push(cur);</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cur = stack.pop();</span><br><span class="line">            res.push(cur.val);</span><br><span class="line">            cur = cur.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>后序遍历</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把先序顺序中的 ‘根左右’ 转换为 ‘根右左’，然后反过来就变成了‘左右根’。</span></span><br><span class="line"><span class="keyword">var</span> postOrder = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> cur = root;</span><br><span class="line">    <span class="keyword">let</span> res = [], stack = [];</span><br><span class="line">    <span class="keyword">while</span> (cur !== <span class="literal">null</span> || stack.length != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur != <span class="literal">null</span>) &#123;</span><br><span class="line">            res.push(cur.val);</span><br><span class="line">            stack.push(cur);</span><br><span class="line">            cur = cur.right;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cur = stack.pop();</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res.reverse();</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>层序遍历</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> layerOrder1 = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> res = [], queue = [];</span><br><span class="line">    queue.push(root);</span><br><span class="line">    <span class="keyword">while</span> (queue.length != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> cur = queue.shift();</span><br><span class="line">        res.push(cur.val);</span><br><span class="line">        <span class="keyword">if</span> (cur.left != <span class="literal">null</span>)&#123;</span><br><span class="line">            queue.push(cur.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cur.right != <span class="literal">null</span>)&#123;</span><br><span class="line">            queue.push(cur.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每层一个数组</span></span><br><span class="line"><span class="keyword">var</span> layerOrder2 = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> res = [], queue = [];</span><br><span class="line">    queue.push(root);</span><br><span class="line">    <span class="keyword">while</span> (queue.length != <span class="number">0</span>) &#123;</span><br><span class="line">        n = queue.length;</span><br><span class="line">        <span class="keyword">let</span> level = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">let</span> cur = queue.shift();</span><br><span class="line">            level.push(cur.val);</span><br><span class="line">            <span class="keyword">if</span> (cur.left != <span class="literal">null</span>)&#123;</span><br><span class="line">                queue.push(cur.left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cur.right != <span class="literal">null</span>)&#123;</span><br><span class="line">                queue.push(cur.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        res.push(level);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>AMD (Asynchronous Module Definition（异步模块定义）)</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 求和模块</span></span><br><span class="line">define(<span class="string">&quot;getSum&quot;</span>, [<span class="string">&quot;math&quot;</span>], <span class="function"><span class="title">funtion</span>(<span class="params">math</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">        log(<span class="string">&quot;sum:&quot;</span>+ math.sum(a, b))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>CommonJS</p>
+<p> 2009年出的规范，原本是为服务端的规范，后来nodejs采用commonjs模块化规范</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过require函数来引用</span></span><br><span class="line"><span class="keyword">const</span> math = <span class="built_in">require</span>(<span class="string">&quot;./math&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过exports将其导出</span></span><br><span class="line"><span class="built_in">exports</span>.getSum = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>ES6 MODULE</p>
+<p> 目前使用最多的便是这个</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过import函数来引用</span></span><br><span class="line"><span class="keyword">import</span> math <span class="keyword">from</span> <span class="string">&quot;./math&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过export将其导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h4 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h4><p>在二叉树的前序、中序、后序遍历中，<strong>递归</strong>实现的伪代码为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">边界条件</span><br><span class="line"></span><br><span class="line">定义 dfs 函数：</span><br><span class="line">	如果 root 为空，返回</span><br><span class="line">	</span><br><span class="line">	root 的值加入结果列表</span><br><span class="line">	递归左子树</span><br><span class="line">	递归右子树</span><br><span class="line"></span><br><span class="line">执行递归函数</span><br><span class="line">返回结果</span><br></pre></td></tr></table></figure>
+<h2 id="4-webpack的打包机制"><a href="#4-webpack的打包机制" class="headerlink" title="4. webpack的打包机制"></a>4. webpack的打包机制</h2><p>根据 <code>import</code> 引入等关键字，将依赖文件打包成一个文件。</p>
+<ul>
+<li>webpack与立即执行函数的关系</li>
+<li>webpack打包的核心逻辑</li>
+</ul>
+<h3 id="打包过程"><a href="#打包过程" class="headerlink" title="打包过程"></a>打包过程</h3><ol>
+<li>从入口文件开始，分析整个应用的依赖树</li>
+<li>将每个依赖模块包装起来，放到一个数组中等待调用</li>
+<li>实现模块加载的方法，并把它放到模块执行的环境中，确保模块间可以互相调用</li>
+<li>把执行入口文件的逻辑放在一个函数表达式中，并立即执行这个函数</li>
+</ol>
+<h3 id="输出文件"><a href="#输出文件" class="headerlink" title="输出文件"></a>输出文件</h3><p>总体结构：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">module</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> installedModules = &#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__webpack_require__</span>(<span class="params">moduleId</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// SOME CODE</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 。。。</span></span><br><span class="line">    <span class="keyword">return</span> __webpack_require__(<span class="number">0</span>); <span class="comment">// entry file</span></span><br><span class="line">&#125;)([ <span class="comment">/* modules array */</span>])</span><br></pre></td></tr></table></figure>
 
-<p><strong>迭代</strong>实现的伪代码为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">边界条件</span><br><span class="line"></span><br><span class="line">初始化：cur，stack，res</span><br><span class="line">while cur 非空或 stack 非空：</span><br><span class="line">	if cur 非空：</span><br><span class="line">		cur 值加入结果列表	</span><br><span class="line">		cur 入栈</span><br><span class="line">		遍历 左&#x2F;右 子树</span><br><span class="line">	else </span><br><span class="line">		cur &#x3D; stack 弹出首节点</span><br><span class="line">		遍历 cur 的右&#x2F;左子树</span><br><span class="line">返回结果</span><br></pre></td></tr></table></figure>
+<p>核心方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">__webpack_require__</span>(<span class="params">moduleId</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// check if module is in cache</span></span><br><span class="line">    <span class="keyword">if</span>(installedModules[moduleId])&#123;</span><br><span class="line">        <span class="keyword">return</span> installedModules[moduleId].exports;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// create a new module (and put into cache)</span></span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">module</span> = installedModules[moduleId] = &#123;</span><br><span class="line">        i: moduleId,</span><br><span class="line">        l: <span class="literal">false</span>,</span><br><span class="line">        <span class="built_in">exports</span>: &#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// exe the module func</span></span><br><span class="line">    modules[moduleId].call&#123;</span><br><span class="line">        <span class="built_in">module</span>.exports,</span><br><span class="line">            <span class="built_in">module</span>,</span><br><span class="line">            <span class="built_in">module</span>.exports,</span><br><span class="line">            __webpack_require__</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// flag the module as loaded</span></span><br><span class="line">    <span class="built_in">module</span>.l = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// return the exxports of the module</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">module</span>.exports;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+<h2 id="5-配置开发环境——npm与包管理器"><a href="#5-配置开发环境——npm与包管理器" class="headerlink" title="5. 配置开发环境——npm与包管理器"></a>5. 配置开发环境——npm与包管理器</h2><h3 id="理解包管理器"><a href="#理解包管理器" class="headerlink" title="理解包管理器"></a>理解包管理器</h3><ol>
+<li><p>熟悉npm核心特征</p>
+</li>
+<li><p>理解npm“仓库”与“依赖”的概念</p>
+</li>
+</ol>
+<ul>
+<li><code>npm install __  --save</code>         <code> --save</code> 参数的作用是把下载的包写入<code>package.json</code> 的依赖 <code>dependencies</code> 中，以后只用把 <code>package.json</code> 带走，然后在 <code>npm install</code> 的时候会根据<code>dependencies</code> 重新下载需要的包</li>
+<li><code>npm install __  --save-dev</code>    <code>-dev</code>  参数是指定开发环境，带这个参数安装的包会添加在 <code>devDependencies</code> 中。</li>
+<li> <code>dependencies</code> 是生产环境的依赖， <code>devDependencies</code> 是开发环境的依赖</li>
+<li>不添加参数执行 <code>npm install</code>，这两个依赖中的包都会装到 <code>node_modules</code> 中</li>
+<li>执行 <code>npm install --only=prod</code>，指定生产环境，只安装 <code>dependencies</code> 中的包（与功能相关的）</li>
+<li>执行 <code>npm install --only=dev</code>，指定开发环境，只安装 <code>devDependencies</code> 中的包（构建工具、质量检测如ESLint）</li>
+</ul>
+<ol start="3">
+<li><p>理解npm“语义化版本”</p>
+<ul>
+<li><p><code>^version</code> : 中版本和小版本</p>
+<p><code>^1.0.1 -&gt; 1.x.x</code> 中最新的版本</p>
+</li>
+<li><p><code>~version</code> : 小版本</p>
+<p><code>^1.0.1 -&gt; 1.0.x</code> 中最新的版本</p>
+</li>
+<li><p><code>version</code> : 特定版本</p>
+</li>
+</ul>
+</li>
+<li><p>掌握使用npm自定义工程脚本的方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">    &quot;dev&quot;: &quot;webpack-dev-server&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;eslint ./src &amp;&amp; webpack&quot;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure></li>
+<li><p>npm install 过程</p>
+<ul>
+<li>寻找报版本信息文件 (<code>package.json</code>)，依照它来进行安装</li>
+<li>查找 <code>package.json</code> 中的依赖，并检查项目中其他的版本信息文件</li>
+<li>如果发现了新包，就更新版本信息文件</li>
+</ul>
+<p>所以发现和包有关的问题时，应该先检查 <code>package.json</code> 中的版本，而不是一味的卸载重装</p>
+</li>
+</ol>
+<h2 id="6-webpack核心特征-（实战）"><a href="#6-webpack核心特征-（实战）" class="headerlink" title="6. webpack核心特征 （实战）"></a>6. webpack核心特征 （实战）</h2><ul>
+<li><p>使用 webpack 构建简单工程</p>
+</li>
+<li><p>了解 webpack 配置文件</p>
+<ul>
+<li><code>webpack.config.js</code> 中的 <code>entry</code> 和 <code>output</code></li>
+<li><code>entry</code> 中指定的文件代表工程资源的入口，可以有多个文件，打包时会以此为切入点，依次寻找依赖，可以理解为依赖树的根，每一个入口都会对应一个最终的打包结果，也就是<code>output</code></li>
+</ul>
+<p>使用 <code>webpack-dev-server</code> 监听工程目录文件的改动</p>
+</li>
+<li><p>掌握 “一切皆模块与loaders” 的思想</p>
+<p>loader 可以理解为对 webpack 能力的一个扩展，多是对文件的操作</p>
+</li>
+<li><p>理解 webpack 中的“关键人物” </p>
+</li>
+</ul>
+<h2 id="7-plugins"><a href="#7-plugins" class="headerlink" title="7. plugins"></a>7. plugins</h2><p>plugins强调事件监听的能力。常用插件：</p>
+<h4 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h4><p><code>npm install @babel/preset-env</code>  这个包可以把高版本代码（ES6）转换为低版本代码（ES5）</p>
+<p>preset-react：解析jsx语法</p>
+<p>使用方法一：package.json中，加入babel配置参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;babel&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;presets&quot;</span> : [<span class="string">&quot;@babel/preset-env&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：在 <code>package.json</code> 文件同目录下，设置 <code>.babelrc</code>文件里面配置同方法一</p>
+<h4 id="html-webpack-plugin"><a href="#html-webpack-plugin" class="headerlink" title="html-webpack-plugin"></a>html-webpack-plugin</h4><p>具体可参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wonyun/p/6030090.html">这里</a>，主要功能是：</p>
+<ul>
+<li><p>为html文件中引入的外部资源如script、link动态添加每次compile后的hash，防止引用缓存的外部文件问题</p>
+</li>
+<li><p>可以生成创建html入口文件，比如单页面可以生成一个html文件入口，配置N个html-webpack-plugin可以生成N个页面入口</p>
+</li>
+</ul>
+<h4 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h4><ul>
+<li>webpack-dev-server –open直接打开浏览器运行项目</li>
+<li>提供文件变化监听，如果项目文件有更新，会自动打包，并刷新页面</li>
+</ul>
+<h4 id="webpack-HRM-模块热更新（不需要刷新浏览器的情况下更新dom）"><a href="#webpack-HRM-模块热更新（不需要刷新浏览器的情况下更新dom）" class="headerlink" title="webpack HRM 模块热更新（不需要刷新浏览器的情况下更新dom）"></a>webpack HRM 模块热更新（不需要刷新浏览器的情况下更新dom）</h4><p>plugin中加入：<code>webpack.HotModuleReplacementPlugin()</code>，具体使用参考<a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/hot-module-replacement-plugin/">文档</a></p>
+<p>其他 webpack 配置可以参考<a target="_blank" rel="noopener" href="https://www.webpackjs.com/configuration/">官方文档</a></p>
+<h2 id="8-Webpack-性能调优"><a href="#8-Webpack-性能调优" class="headerlink" title="8. Webpack 性能调优"></a>8. Webpack 性能调优</h2><ol>
+<li><p>打包结果优化（体积优化）</p>
+<p><code>TerserPlugin</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> TerserPlugin = <span class="built_in">require</span>(<span class="string">&#x27;terser-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.export = &#123;</span><br><span class="line">    optimization: &#123;</span><br><span class="line">        minimizer: [<span class="keyword">new</span> TerserPlugin(&#123;</span><br><span class="line">            cache:<span class="literal">true</span>,	  <span class="comment">// 缓存 加快构建速度</span></span><br><span class="line">            parrlel: <span class="literal">true</span>,<span class="comment">// 多线程处理</span></span><br><span class="line">            terserOptions : &#123;</span><br><span class="line">                compress: &#123;</span><br><span class="line">                    <span class="comment">//删除掉一些没有用的代码</span></span><br><span class="line">                    unused: <span class="literal">true</span>,</span><br><span class="line">                    drop_debugger: <span class="literal">true</span>,</span><br><span class="line">                    drop_console: <span class="literal">true</span>,</span><br><span class="line">                    dead_code:<span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)]</span><br><span class="line">    &#125;</span><br><span class="line">	... </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>webpackBundleAnalyzer</code>  可视化 webpack 分析器<br>打包过程中会出现分析后的页面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> BundleAnalyzerPlugin = <span class="built_in">require</span>(<span class="string">&#x27;webpack-bundle-analyzer&#x27;</span>).BundleAnalyzerPlugin;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> BundleAnalyzerPlugin()</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>构建过程优化</p>
+<p><code>happyPack</code></p>
+<ul>
+<li>多线程打包</li>
+<li>可以根据 cpu 数量构建线程池</li>
+<li>使用 <code>thread-loader</code></li>
+</ul>
+</li>
+<li><p>Tree-Shaking（消除无用代码）</p>
+<ul>
+<li>DCE的另一种实现方式，摇晃树，可以去掉无用的树叶</li>
+<li>作用：例如定义了一个 <code>util.js</code>，里面很多公用的方法，但是很多方法没有用到，那么在dev环境打包时候，输出文件中就可以看到很多没用到的方法声明，但是在pro环境打包时候，输出文件中就没有这些方法，消除掉这部分没用的代码。</li>
+</ul>
+</li>
+</ol>
 
       
 
@@ -289,19 +409,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Vue.js</a>
         		</li>
       		
 		</ul>
@@ -357,7 +473,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/13/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/06/04/webpack/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -371,18 +487,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/04/25/11%E4%B8%AAJS%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/06/04/Vue_tips_render/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          11个JavaScript技巧
+          Vue中的 `render: h =&gt; h(App) $mount` 什么意思
         
       </div>
     </a>
   
   
-    <a href="/2021/03/29/JavaScript%20%E4%B8%AD%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaScript 中的 &#39;&gt;&gt;&gt;&#39; 运算符</div>
+    <a href="/2021/05/13/img%E6%A0%87%E7%AD%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">img标签到底是行内元素还是块级元素</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -406,26 +522,6 @@
 </aside>
 
 
-
-  
-  
-  
-
-  
-  <div id="SOHUCS" sid="二叉树的遍历" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cyvmG9T4b",
-        conf: "55361f5ca873e550503f8c764fd3e104"
-    });
-</script>
-</script>
-  
-
-  
-
-  
 
 
           </div>
