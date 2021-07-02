@@ -16,7 +16,7 @@
 <meta property="og:description" content="1.pxpx就是像素，也是我们现在经常使用的基本单位，比如常常听到的电脑像素是1024x768的，表示的是水平方向是1024个像素点，垂直方向是768个像素点。px是绝对长度单位，它不会根据屏幕的大小进行调整。 2.emem是相对字体长度单位，参考物是父元素的font-size，默认字体大小是16px，所以1em不是固定值，他会继承父元素的字体大小。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-26T11:46:51.040Z">
+<meta property="article:modified_time" content="2021-07-02T02:22:10.171Z">
 <meta property="article:author" content="Zhao Yao">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="前端">
@@ -188,21 +188,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-px"><a href="#1-px" class="headerlink" title="1.px"></a>1.px</h4><p><code>px</code>就是像素，也是我们现在经常使用的基本单位，比如常常听到的电脑像素是1024x768的，表示的是水平方向是1024个像素点，垂直方向是768个像素点。<br><code>px</code>是<strong>绝对长度</strong>单位，它不会根据屏幕的大小进行调整。</p>
-<h4 id="2-em"><a href="#2-em" class="headerlink" title="2.em"></a>2.em</h4><p><code>em</code>是<strong>相对字体长度</strong>单位，参考物是父元素的<code>font-size</code>，默认字体大小是<code>16px</code>，所以<code>1em</code>不是固定值，他会继承父元素的字体大小。</p>
+        <h3 id="1-px"><a href="#1-px" class="headerlink" title="1.px"></a>1.px</h3><p><code>px</code>就是像素，也是我们现在经常使用的基本单位，比如常常听到的电脑像素是1024x768的，表示的是水平方向是1024个像素点，垂直方向是768个像素点。<br><code>px</code>是<strong>绝对长度</strong>单位，它不会根据屏幕的大小进行调整。</p>
+<h3 id="2-em"><a href="#2-em" class="headerlink" title="2.em"></a>2.em</h3><p><code>em</code>是<strong>相对字体长度</strong>单位，参考物是父元素的<code>font-size</code>，默认字体大小是<code>16px</code>，所以<code>1em</code>不是固定值，他会继承父元素的字体大小。</p>
 <span id="more"></span>
 
-<h4 id="3-rem"><a href="#3-rem" class="headerlink" title="3.rem"></a>3.rem</h4><p><code>rem</code>的参考物是相对于根元素，即 <code>html</code>元素字体大小，所以只需要在 <code>html</code>标签上设置字体大小为标准，文档中的字体大小都会以此为参照。</p>
+<h3 id="3-rem"><a href="#3-rem" class="headerlink" title="3.rem"></a>3.rem</h3><p><code>rem</code>的参考物是相对于根元素，即 <code>html</code>元素字体大小，所以只需要在 <code>html</code>标签上设置字体大小为标准，文档中的字体大小都会以此为参照。</p>
 <p>任意浏览器的默认字体大小都是<code>16px</code>，为了简化<code>font-size</code>的换算，需要在 css 中的根元素 html 中声明 <code>font-size=62.5%</code>，这就使 rem 的值变为 <code>16px * 62.5% = 10px</code>，这样 <code>10px = 1rem</code>，也就是说只需要将原来的<code>px</code>数值除以 10，然后换上 rem 作为单位就可以了。</p>
-<h4 id="4"><a href="#4" class="headerlink" title="4.%"></a>4.%</h4><p>百分比是一个相对长度单位，相对于包含块（containing block）的高宽或字体大小。<br>关于包含块（containing block）的概念，不能简单地理解成是父元素。</p>
+<h3 id="4"><a href="#4" class="headerlink" title="4.%"></a>4.%</h3><p>百分比是一个相对长度单位，相对于包含块（containing block）的高宽或字体大小。<br>关于包含块（containing block）的概念，不能简单地理解成是父元素。</p>
 <ul>
 <li>如果是静态定位和相对定位，包含块一般就是其父元素。</li>
 <li>如果是绝对定位的元素，包含块应该是离它最近的 position为非static属性的祖先元素。</li>
 <li>如果是固定定位的元素，它的包含块是视口（viewport）</li>
 </ul>
-<h4 id="5-vw-和-vh"><a href="#5-vw-和-vh" class="headerlink" title="5.vw 和 vh"></a>5.vw 和 vh</h4><p>CSS3 新增的长度单位，分别表示 <code>viewpoint width</code> 和 <code>viewpoint height</code>，1vh 等于1/100的视口高度。<br>举个列子：浏览器高度900px，1vh = 900px/100 = 9 px。<br>同理，如果视口宽度为750px，1vw = 750px/100 = 7.5 px</p>
-<h4 id="6-vm"><a href="#6-vm" class="headerlink" title="6.vm"></a>6.vm</h4><p>css3新单位，表示<code>vmin</code>，指相对于视口的宽度或高度中<strong>较小</strong>的那个。其中最小的那个被均分为100单位的vm<br>举个例子：浏览器高度900px，宽度1200px，取最小的浏览器高度， 1 vm = 900px/100 = 9 px。<br>现在vm的兼容性较差。</p>
-<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><ol>
+<h3 id="5-vw-和-vh"><a href="#5-vw-和-vh" class="headerlink" title="5.vw 和 vh"></a>5.vw 和 vh</h3><p>CSS3 新增的长度单位，分别表示 <code>viewpoint width</code> 和 <code>viewpoint height</code>，1vh 等于1/100的视口高度。<br>举个列子：浏览器高度900px，1vh = 900px/100 = 9 px。<br>同理，如果视口宽度为750px，1vw = 750px/100 = 7.5 px</p>
+<h3 id="6-vm"><a href="#6-vm" class="headerlink" title="6.vm"></a>6.vm</h3><p>css3新单位，表示<code>vmin</code>，指相对于视口的宽度或高度中<strong>较小</strong>的那个。其中最小的那个被均分为100单位的vm<br>举个例子：浏览器高度900px，宽度1200px，取最小的浏览器高度， 1 vm = 900px/100 = 9 px。<br>现在vm的兼容性较差。</p>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
 <li>为什么一开始在css样式中给<code>body</code>设置<code>font-size：62.5%</code>？<br>答：这样设置是为了方便计算<code>em</code>单位换算，浏览器默认字体大小是<code>16px</code>，设置<code>font-size：62.5%</code>使得em值变为 <code>1em = 16px * 62.5% = 10px</code>。</li>
 </ol>
 <ol start="2">
