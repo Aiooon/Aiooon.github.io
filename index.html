@@ -164,6 +164,104 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-清除浮动" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/03/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/">CSS中清除浮动的几种方法</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/03/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" class="archive-article-date">
+  	<time datetime="2021-07-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为什么要清除浮动：元素设置为浮动时引起的父元素<strong>内容塌陷</strong>，影响布局效果。</p>
+<h5 id="1-设置-clear-属性"><a href="#1-设置-clear-属性" class="headerlink" title="1. 设置 clear 属性"></a>1. 设置 <code>clear</code> 属性</h5><p>在最后添加一个 <code>div</code> 元素，设置 <code>clear</code> 属性。<code>clear</code> 属性用于设置哪一侧元素不允许浮动（一定要用在一个块级（内联块inline-block也不行）作用域上）。[none / left / right / both]</p>
+<pre><code><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clear</span>&#123;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h5 id="2-overflow属性用于设置元素不够容纳内容时的显示方式"><a href="#2-overflow属性用于设置元素不够容纳内容时的显示方式" class="headerlink" title="2. overflow属性用于设置元素不够容纳内容时的显示方式"></a>2. overflow属性用于设置元素不够容纳内容时的显示方式</h5><ul>
+<li>默认值为 <code>visible</code></li>
+<li>auto：自动添加滚动条</li>
+<li>hidden：匿藏掉超出的内容</li>
+<li>scroll：一直显示滚动条</li>
+</ul>
+<h5 id="3-企业级应用中清除浮动的最佳方法-clearfix"><a href="#3-企业级应用中清除浮动的最佳方法-clearfix" class="headerlink" title="3. 企业级应用中清除浮动的最佳方法:clearfix"></a>3. 企业级应用中清除浮动的最佳方法:<code>clearfix</code></h5><pre><code>使用伪类元素 after 在父元素尾部添加一个元素
+对这个添加的伪元素应用清除浮动的样式
+必备三大样式：content  clear  display
+可选三大样式：height  font-size  visibility  (这三个属性主要是为了设置让伪类不可见)
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>清除浮动<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .box &#123;</span><br><span class="line"><span class="css">            <span class="attribute">border</span>: <span class="number">2px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">border-style</span>: solid;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .left &#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">float</span>: left;: </span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .right &#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">float</span>: right;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: green;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .clearfix:after&#123;</span><br><span class="line"><span class="css">            <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">clear</span>: both;</span></span><br><span class="line"><span class="css">            <span class="attribute">display</span>: block;</span></span><br><span class="line"></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">font-size</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box clearfix&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+现在只用固定 `clearfix` 的样式，然后把 `clearfix` 放在需要清除浮动的类名后面就可以了。
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/03/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JS_map_foreach_reduce" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -978,93 +1076,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/04/Vue_tips_render/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-img标签" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/13/img%E6%A0%87%E7%AD%BE/">img标签到底是行内元素还是块级元素</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/13/img%E6%A0%87%E7%AD%BE/" class="archive-article-date">
-  	<time datetime="2021-05-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="面试官问你-lt-img-gt-是什么元素时你怎么回答"><a href="#面试官问你-lt-img-gt-是什么元素时你怎么回答" class="headerlink" title="面试官问你&lt;img&gt;是什么元素时你怎么回答"></a>面试官问你<code>&lt;img&gt;</code>是什么元素时你怎么回答</h3><p>写这篇文章源自于一个面试题，题目便是问<code>img</code>标签属于块级元素还是行内元素，当时想都没想就说了是行内(inline)元素，面试官追问为什么能够设置 <code>&lt;img /&gt;</code> 标签的宽和高，当时脑子突然一懵，发现这是自己技术上的一个空白，所以有了这篇文章。</p>
-<h4 id="lt-img-gt-标签的基本使用"><a href="#lt-img-gt-标签的基本使用" class="headerlink" title="&lt;img /&gt; 标签的基本使用"></a>&lt;img /&gt; 标签的基本使用</h4><h5 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><ul>
-<li>所有主流浏览器都支持 <code>&lt;img&gt;</code> 标签</li>
-</ul>
-        
-          <a class="article-more-a" href="/2021/05/13/img%E6%A0%87%E7%AD%BE/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/13/img%E6%A0%87%E7%AD%BE/">展开全文 >></a>
         </p>
       
 
