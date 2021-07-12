@@ -351,6 +351,227 @@
 
 
   
+    <article id="post-CSS知识点总结2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/12/CSS%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%932/">CSS 知识点小结(下)</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/12/CSS%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%932/" class="archive-article-date">
+  	<time datetime="2021-07-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="11-Flex-布局"><a href="#11-Flex-布局" class="headerlink" title="11. Flex 布局"></a>11. Flex 布局</h2><p><code>flex</code> 布局意为“弹性布局”，用来为<strong>盒模型</strong>提供最大的灵活性。任何一个元素都可以指定为 <code>flex</code> 布局。</p>
+<p><strong>注意</strong>，设为 <code>flex</code> 布局以后，子元素的 <code>float、clear、vertical-align</code> 属性将失效。</p>
+<p><strong>容器的属性</strong><br>| 属性 | 描述 |<br>| —– | —- |<br>| flex-direction    | 决定主轴的方向，即项目的排列方向。row / row-reverse / column / column-reverse，默认为 row |<br>| flex-wrap            | 默认情况下项目都在一条轴线上，该属性定义，如果一行排不下，该如何换行。 wrap / nowrap / wrap-reverse |<br>| flex-flow            | 是 flex-direction 和 flex-wrap 的简写形式，默认为 row nowrap |<br>| justify-content   | 定义项目在主轴上的对齐方式：flex-start / flex-end / center / space-between / space-around |<br>| align-items       | 定义项目在交叉轴上如何对齐：flex-start / flex-end / center / baseline / stretch |<br>| align-content     | 定义了多根轴线的对齐方式：flex-start / flex-end / center / space-between / space-around / stretch |</p>
+<p><strong>项目的属性</strong><br>| 属性 | 描述 |<br>| —– | —- |<br>| order         | 定义项目的排列顺序。默认为0，数值越小，排列越靠前 |<br>| flex-grow        | 定义项目的放大比例，默认为0，即如果存在剩余空间也不放大 |<br>| flex-shrink   | 定义项目的缩小比例，默认为1，即如果空间不足，该项目将缩小 |<br>| flex-basis    | 定义在分配多余空间之前，项目占据的主轴空间。他可以设为跟width一样的属性值，则项目将占据固定空间 |<br>| flex          | 是flex-grow、flex-shrink、flex-basis的简写，默认值为 0 1 auto |<br>| align-self     | 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。默认值为 auto，表示继承父元素的align-items属性 |</p>
+<h2 id="12-px-em-rem的区别"><a href="#12-px-em-rem的区别" class="headerlink" title="12. px, em, rem的区别"></a>12. px, em, rem的区别</h2><ul>
+<li><p>px：像素px是相对于显示器屏幕分辨率而言的。</p>
+</li>
+<li><p>em：相对于当前父元素的字体大小</p>
+</li>
+<li><p>rem：rem 相对于根元素设置字体大小</p>
+</li>
+<li><p>对于只需要适配少部分手机设备，且分辨率对页面影响不大的，使用 px 即可</p>
+</li>
+<li><p>对于需要适配各种移动设备，使用 rem</p>
+</li>
+</ul>
+<h2 id="13-媒体查询"><a href="#13-媒体查询" class="headerlink" title="13. 媒体查询"></a>13. 媒体查询</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">300px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">body</span> &#123;</span><br><span class="line">        <span class="attribute">background-color</span>:lightblue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="14-HTML5-新特性"><a href="#14-HTML5-新特性" class="headerlink" title="14. HTML5 新特性"></a>14. HTML5 新特性</h2><p><a href="">H5十个新特性总结</a></p>
+<h2 id="15-理解-BFC"><a href="#15-理解-BFC" class="headerlink" title="15. 理解 BFC"></a>15. 理解 BFC</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25321647">10 分钟理解 BFC 原理</a></p>
+<h2 id="16-Grid-布局"><a href="#16-Grid-布局" class="headerlink" title="16. Grid 布局"></a>16. Grid 布局</h2><p><code>Flex</code> 布局是轴线布局，只能指定”项目“针对轴线的位置，可以看作是一维布局。</p>
+<p><code>Grid</code> 布局则是将容器划分为 ”行“ 和 ”列“，产生单元格，然后指定项目所在的单元格，可以看作是二维布局。</p>
+<h2 id="17-行内元素的间距怎么解决"><a href="#17-行内元素的间距怎么解决" class="headerlink" title="17. 行内元素的间距怎么解决"></a>17. 行内元素的间距怎么解决</h2><ol>
+<li>行内元素写在一行，中间不留空格</li>
+<li>父元素 <code>font-size</code> 设为 0</li>
+<li>使用 <code>float</code></li>
+</ol>
+<h2 id="18-伪类和伪元素有什么不同"><a href="#18-伪类和伪元素有什么不同" class="headerlink" title="18. 伪类和伪元素有什么不同"></a>18. 伪类和伪元素有什么不同</h2><p><strong>伪类用于当已有元素处于的某个状态时，为其添加对应的样式，这个状态是根据用户行为而动态变化的</strong>，比如说，当用户悬停在指定的元素时，我们可以用 <code>:hover</code> 来描述这个元素的状态。虽然它和普通的 css 类相似，可以为已有的元素添加样式，但是<strong>它只有处于 dom 树无法描述的状态下才能为元素添加样式</strong>，所以将其称为<strong>伪类</strong>。</p>
+<p><strong>伪元素</strong>不是 DOM 中的真实元素，但是存在于最终的渲染树中，可以为其添加样式，比如说，我们可以通过 <code>：before</code> 来在一个元素前增加一些文本。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/12/CSS%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%932/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-H5十个新特性总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/10/H5%E5%8D%81%E4%B8%AA%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/">H5十个新特性总结</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/10/H5%E5%8D%81%E4%B8%AA%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2021-07-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>html5 总的来说比 html4 多了以下十个新特性，但其不支持 ie8 及 ie8 以下版本的浏览器。</p>
+<ol>
+<li><p>语义标签</p>
+</li>
+<li><p>增强型表单</p>
+</li>
+<li><p>视频和音频</p>
+</li>
+<li><p>Canvas绘图</p>
+</li>
+<li><p>SVG绘图</p>
+</li>
+<li><p>地理定位</p>
+</li>
+<li><p>拖放API</p>
+</li>
+<li><p>WebWorker</p>
+</li>
+<li><p>WebStorage</p>
+</li>
+<li><p>WebSocket</p>
+</li>
+</ol>
+        
+          <a class="article-more-a" href="/2021/07/10/H5%E5%8D%81%E4%B8%AA%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/10/H5%E5%8D%81%E4%B8%AA%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-清除浮动" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -878,198 +1099,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/29/webpack/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-事件循环：微任务和宏任务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/27/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1/">事件循环：微任务和宏任务</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/27/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1/" class="archive-article-date">
-  	<time datetime="2021-06-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p><strong>事件循环</strong> 的概念非常简单。它是一个在 <code>JavaScript</code> 引擎<strong>等待任务</strong>，<strong>执行任务</strong>和<strong>进入休眠状态</strong>等待更多任务这几个状态之间转换的无限循环。</p>
-<p>引擎的一般算法：</p>
-<ol>
-<li>当有任务时：<ul>
-<li>从最先进入的任务开始执行。</li>
-</ul>
-</li>
-<li>休眠直到出现任务，然后转到第 1 步。</li>
-</ol>
-<p>当我们浏览一个网页时就是上述这种形式。<code>JavaScript</code> 引擎大多数时候不执行任何操作，它仅在<strong>脚本/处理程序/事件激活</strong>时执行。</p>
-<p>任务示例：</p>
-<ul>
-<li>当外部脚本 <code>&lt;script src=&quot;...&quot;&gt;</code> 加载完成时，任务就是执行它。</li>
-<li>当用户移动鼠标时，任务就是派生出 <code>mousemove</code> 事件和执行处理程序。</li>
-<li>当安排的（scheduled）<code>setTimeout</code> 时间到达时，任务就是执行其回调。</li>
-<li>……诸如此类。</li>
-</ul>
-<p>设置任务 —&gt; 引擎处理它们 —&gt; 然后等待更多任务（即休眠，几乎不消耗 CPU 资源）。<br>一个任务到来时，引擎可能正处于繁忙状态，那么这个任务就会被排入队列。<br>多个任务组成了一个队列，即所谓的<strong>宏任务队列</strong>（v8 术语）：</p>
-        
-          <a class="article-more-a" href="/2021/06/27/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/27/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-微任务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/27/%E5%BE%AE%E4%BB%BB%E5%8A%A1/">微任务（Microtask）</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/27/%E5%BE%AE%E4%BB%BB%E5%8A%A1/" class="archive-article-date">
-  	<time datetime="2021-06-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>Promise</code> 的处理程序（<code>handlers</code>）<code>.then</code>、<code>.catch</code> 和 <code>.finally</code> 都是异步的。</p>
-<p>即便一个 <code>promise</code> 立即被 <code>resolve</code>，<code>.then</code>、<code>.catch</code> 和 <code>.finally</code> 下面的代码也会在这些处理程序（<code>handler</code>）<strong>之前</strong>被执行。</p>
-<p>示例代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.resolve();</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function">() =&gt;</span> alert(<span class="string">&quot;promise done!&quot;</span>));</span><br><span class="line"></span><br><span class="line">alert(<span class="string">&quot;code finished&quot;</span>); <span class="comment">// 这个 alert 先显示</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你运行它，你会首先看到 <code>code finished</code>，然后才是 <code>promise done</code>。</p>
-<p>这很奇怪，因为这个 <code>promise</code> 肯定是一开始就完成的。</p>
-<p>为什么 <code>.then</code> 会在之后才被触发？这是怎么回事？</p>
-        
-          <a class="article-more-a" href="/2021/06/27/%E5%BE%AE%E4%BB%BB%E5%8A%A1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/27/%E5%BE%AE%E4%BB%BB%E5%8A%A1/">展开全文 >></a>
         </p>
       
 
