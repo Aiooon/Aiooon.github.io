@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>CSS 知识点小结(上) | Noah 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CSS 知识点小结1. 权重及引入方式CSS中的权重主要可以分为四个等级：  元素选择器和伪元素选择器，权重为 1 类选择器（.content）、伪类选择器(:hover) 和 属性选择器([attribute])，权值为 10 id 选择器，权重为 100 内联样式，如 style&#x3D;xxx，权重为1000  注意：通用选择器(*)、子元素选择器(&gt;) 和 相邻同胞选择器(+)不在这四个等级">
+  <meta name="description" content="1. 权重及引入方式CSS中的权重主要可以分为四个等级：  元素选择器和伪元素选择器，权重为 1 类选择器（.content）、伪类选择器(:hover) 和 属性选择器([attribute])，权值为 10 id 选择器，权重为 100 内联样式，如 style&#x3D;xxx，权重为1000  注意：通用选择器(*)、子元素选择器(&gt;) 和 相邻同胞选择器(+)不在这四个等级中，它们的权重都为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS 知识点小结(上)">
 <meta property="og:url" content="http://example.com/2021/07/12/CSS%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Noah 的博客">
-<meta property="og:description" content="CSS 知识点小结1. 权重及引入方式CSS中的权重主要可以分为四个等级：  元素选择器和伪元素选择器，权重为 1 类选择器（.content）、伪类选择器(:hover) 和 属性选择器([attribute])，权值为 10 id 选择器，权重为 100 内联样式，如 style&#x3D;xxx，权重为1000  注意：通用选择器(*)、子元素选择器(&gt;) 和 相邻同胞选择器(+)不在这四个等级">
+<meta property="og:description" content="1. 权重及引入方式CSS中的权重主要可以分为四个等级：  元素选择器和伪元素选择器，权重为 1 类选择器（.content）、伪类选择器(:hover) 和 属性选择器([attribute])，权值为 10 id 选择器，权重为 100 内联样式，如 style&#x3D;xxx，权重为1000  注意：通用选择器(*)、子元素选择器(&gt;) 和 相邻同胞选择器(+)不在这四个等级中，它们的权重都为">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210416/1449535_1618559471794/F1CEEA9005E00C7E3807ABC47612C5D1">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210416/1449535_1618559487367/8BFA37E095681577250914DBDC166B88">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210416/1449535_1618559500602/9647BA9C435D70F6E9AB2477B2B7600A">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210416/1449535_1618559512923/0964240E005430D89B671C9ED48CFE46">
 <meta property="article:published_time" content="2021-07-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-12T08:31:24.351Z">
+<meta property="article:modified_time" content="2021-07-12T08:33:23.149Z">
 <meta property="article:author" content="Zhao Yao">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="笔记">
@@ -194,7 +194,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="CSS-知识点小结"><a href="#CSS-知识点小结" class="headerlink" title="CSS 知识点小结"></a>CSS 知识点小结</h1><h2 id="1-权重及引入方式"><a href="#1-权重及引入方式" class="headerlink" title="1. 权重及引入方式"></a>1. 权重及引入方式</h2><p>CSS中的权重主要可以分为四个等级：</p>
+        <h2 id="1-权重及引入方式"><a href="#1-权重及引入方式" class="headerlink" title="1. 权重及引入方式"></a>1. 权重及引入方式</h2><p>CSS中的权重主要可以分为四个等级：</p>
 <ul>
 <li>元素选择器和伪元素选择器，权重为 <code>1</code></li>
 <li>类选择器（<code>.content</code>）、伪类选择器(<code>:hover</code>) 和 属性选择器(<code>[attribute]</code>)，权值为 <code>10</code></li>
@@ -205,6 +205,8 @@
 <p>权重越大的选择器优先级也越高，相同权重的优先级又遵循<strong>后定义覆盖前面定义</strong>的情况。</p>
 <p>一个 <code>:</code> 的为<strong>伪类</strong>:     <code>:hover</code>,<code>:focus</code>,<code>:first-of-type</code>,<code>:first-child</code></p>
 <p>两个 <code>::</code> 为<strong>伪元素</strong>:  <code>:: before</code>,<code>::after</code></p>
+<span id="more"></span>
+
 <h2 id="2-lt-a-gt-lt-a-gt-标签作用"><a href="#2-lt-a-gt-lt-a-gt-标签作用" class="headerlink" title="2. &lt;a&gt;&lt;/a&gt;标签作用"></a>2. <code>&lt;a&gt;&lt;/a&gt;</code>标签作用</h2><ol>
 <li>超链接</li>
 <li>锚链接</li>
@@ -305,7 +307,7 @@
 <li>display: inline-block，table-cell </li>
 <li>overflow: hidden，scroll，不为 visible</li>
 </ul>
-<h2 id="9-各种FC布局简单介绍：BFC，IFC，GFC，FFC"><a href="#9-各种FC布局简单介绍：BFC，IFC，GFC，FFC" class="headerlink" title="9. 各种FC布局简单介绍：BFC，IFC，GFC，FFC"></a>9. 各种FC布局简单介绍：BFC，IFC，GFC，FFC</h2><p><a href="">CSS布局的各种FC简单介绍：BFC，IFC，GFC，FFC</a></p>
+<h2 id="9-各种FC布局简单介绍：BFC，IFC，GFC，FFC"><a href="#9-各种FC布局简单介绍：BFC，IFC，GFC，FFC" class="headerlink" title="9. 各种FC布局简单介绍：BFC，IFC，GFC，FFC"></a>9. 各种FC布局简单介绍：BFC，IFC，GFC，FFC</h2><p><a target="_blank" rel="noopener" href="https://aiooon.github.io/2021/07/12/FC%E5%B8%83%E5%B1%80/">CSS布局的各种FC简单介绍：BFC，IFC，GFC，FFC</a></p>
 <h2 id="10-圣杯布局与双飞翼布局"><a href="#10-圣杯布局与双飞翼布局" class="headerlink" title="10. 圣杯布局与双飞翼布局"></a>10. 圣杯布局与双飞翼布局</h2><p>圣杯布局与双飞翼布局是为了实现一个<strong>两侧固定宽度，中间自适应的三栏布局</strong>。两者需要遵循以下要点：</p>
 <ul>
 <li>两侧固定宽度，中间自适应</li>
