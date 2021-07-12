@@ -16,7 +16,7 @@
 <meta property="og:description" content="11. Flex 布局flex 布局意为“弹性布局”，用来为盒模型提供最大的灵活性。任何一个元素都可以指定为 flex 布局。 注意，设为 flex 布局以后，子元素的 float、clear、vertical-align 属性将失效。 容器的属性| 属性 | 描述 || —– | —- || flex-direction    | 决定主轴的方向，即项目的排列方向。row &#x2F; row-rever">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-12T12:12:48.661Z">
+<meta property="article:modified_time" content="2021-07-12T12:19:20.393Z">
 <meta property="article:author" content="Zhao Yao">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="笔记">
@@ -192,6 +192,8 @@
         <h2 id="11-Flex-布局"><a href="#11-Flex-布局" class="headerlink" title="11. Flex 布局"></a>11. Flex 布局</h2><p><code>flex</code> 布局意为“弹性布局”，用来为<strong>盒模型</strong>提供最大的灵活性。任何一个元素都可以指定为 <code>flex</code> 布局。</p>
 <p><strong>注意</strong>，设为 <code>flex</code> 布局以后，子元素的 <code>float、clear、vertical-align</code> 属性将失效。</p>
 <p><strong>容器的属性</strong><br>| 属性 | 描述 |<br>| —– | —- |<br>| flex-direction    | 决定主轴的方向，即项目的排列方向。row / row-reverse / column / column-reverse，默认为 row |<br>| flex-wrap            | 默认情况下项目都在一条轴线上，该属性定义，如果一行排不下，该如何换行。 wrap / nowrap / wrap-reverse |<br>| flex-flow            | 是 flex-direction 和 flex-wrap 的简写形式，默认为 row nowrap |<br>| justify-content   | 定义项目在主轴上的对齐方式：flex-start / flex-end / center / space-between / space-around |<br>| align-items       | 定义项目在交叉轴上如何对齐：flex-start / flex-end / center / baseline / stretch |<br>| align-content     | 定义了多根轴线的对齐方式：flex-start / flex-end / center / space-between / space-around / stretch |</p>
+<span id="more"></span>
+
 <p><strong>项目的属性</strong><br>| 属性 | 描述 |<br>| —– | —- |<br>| order         | 定义项目的排列顺序。默认为0，数值越小，排列越靠前 |<br>| flex-grow        | 定义项目的放大比例，默认为0，即如果存在剩余空间也不放大 |<br>| flex-shrink   | 定义项目的缩小比例，默认为1，即如果空间不足，该项目将缩小 |<br>| flex-basis    | 定义在分配多余空间之前，项目占据的主轴空间。他可以设为跟width一样的属性值，则项目将占据固定空间 |<br>| flex          | 是flex-grow、flex-shrink、flex-basis的简写，默认值为 0 1 auto |<br>| align-self     | 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。默认值为 auto，表示继承父元素的align-items属性 |</p>
 <h2 id="12-px-em-rem的区别"><a href="#12-px-em-rem的区别" class="headerlink" title="12. px, em, rem的区别"></a>12. px, em, rem的区别</h2><ul>
 <li><p>px：像素px是相对于显示器屏幕分辨率而言的。</p>
@@ -208,7 +210,7 @@
 <h2 id="13-媒体查询"><a href="#13-媒体查询" class="headerlink" title="13. 媒体查询"></a>13. 媒体查询</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">300px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">body</span> &#123;</span><br><span class="line">        <span class="attribute">background-color</span>:lightblue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="14-HTML5-新特性"><a href="#14-HTML5-新特性" class="headerlink" title="14. HTML5 新特性"></a>14. HTML5 新特性</h2><p><a href="">H5十个新特性总结</a></p>
+<h2 id="14-HTML5-新特性"><a href="#14-HTML5-新特性" class="headerlink" title="14. HTML5 新特性"></a>14. HTML5 新特性</h2><p><a target="_blank" rel="noopener" href="https://aiooon.github.io/2021/07/10/H5%E5%8D%81%E4%B8%AA%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/">H5十个新特性总结</a></p>
 <h2 id="15-理解-BFC"><a href="#15-理解-BFC" class="headerlink" title="15. 理解 BFC"></a>15. 理解 BFC</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25321647">10 分钟理解 BFC 原理</a></p>
 <h2 id="16-Grid-布局"><a href="#16-Grid-布局" class="headerlink" title="16. Grid 布局"></a>16. Grid 布局</h2><p><code>Flex</code> 布局是轴线布局，只能指定”项目“针对轴线的位置，可以看作是一维布局。</p>
 <p><code>Grid</code> 布局则是将容器划分为 ”行“ 和 ”列“，产生单元格，然后指定项目所在的单元格，可以看作是二维布局。</p>
